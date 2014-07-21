@@ -21,12 +21,18 @@ def database_load():
 
 def project_list():
     for p in projects:
-        print("Project Name")
+        #print("Project Name:")
         print(p[0][0])
-        print("Project total hour")
-        print(p[1])
+        #print("Project total hour")
+        #print(p[1])
+        print(project_total_hours(p))
         print("")
 
+def project_total_hours(p):
+    total_hours=0
+    for w in p[1]:
+        total_hours=total_hours+int(w[1])
+    return total_hours
 
 def project_create():
     #print("What is project name\n")
@@ -61,11 +67,11 @@ def project_add_hours():
 database_load()
 
 while(1):
-    print("p Add Project\n")
-    print("a Add Hours To Project\n")
-    print("s Save\n")
-    print("l List\n")
-    print("q Quit\n")
+    print("p Add Project")
+    print("a Add Hours To Project")
+    print("s Save")
+    print("l List")
+    print("q Quit")
     
     
     a=raw_input("")
@@ -78,7 +84,6 @@ while(1):
     elif a=="d":
         project_del()
     elif a=="s":
-        project_list()
         f=open(database_name,"r+")
         pickle.dump(projects, f)
         f.close()
